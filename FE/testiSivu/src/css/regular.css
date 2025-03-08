@@ -1,0 +1,68 @@
+.regular-panel {
+    width: 100%;
+    height: 100%;
+}
+
+.regular-panel-line {
+    width: 100%;
+    height: 30%;
+    display: flex;
+}
+
+.regular-panel-part {
+    width: 50%;
+    height: 100%;
+    background-color: blue;
+}
+
+.regular-panel-posts {
+    height: 70%;
+    width: 100%;
+    background-color: blueviolet;
+    overflow: hidden;
+}
+
+.tbody2 {
+    width: 80%;
+    height: 80%;
+    background-color: beige;
+    margin: 7% 10%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.post-div {
+    background-color: #009842;
+    width: 90%;
+    height: 25%;
+    margin: 5%;
+    display: flex;
+}
+
+.post-text {
+    height: 100%;
+    width: 70%;
+    background-color: grey;
+}
+
+.post-date {
+    width: 100%;
+    height: 50%;
+    background-color: brown;
+    display: block;
+}
+
+.post-number {
+    width: 100%;
+    height: 50%;
+    background-color: coral;
+    display: block;
+}
+
+.post-info {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

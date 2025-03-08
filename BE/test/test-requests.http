@@ -1,0 +1,279 @@
+
+POST http://localhost:3000/api/greet
+Content-Type: 'application/json'
+
+{
+    "sender": "Bob",
+    "message": "testitervehdys"
+}
+
+###
+
+GET http://localhost:3000
+
+###
+
+DELETE http://localhost:3000/api/resource/99
+
+###
+
+GET http://localhost:3000/api/ero/2/7
+
+###
+
+GET http://localhost:3000/public/test-css.css
+
+
+###
+
+DELETE http://localhost:3000/api/items/3
+
+###
+
+POST http://localhost:3000/api/items
+Content-Type: application/json
+
+{
+    "nane": "Sitruuna"
+}
+
+###
+
+PUT http://localhost:3000/api/items/3
+Content-Type: application/json
+
+{
+    "name": "Patrick"
+}
+
+
+### items
+
+### get all items
+
+GET http://localhost:3000/api/users/
+
+
+
+###
+
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+    "username": "Uusi käyttäjä",
+    "password": "salakana"
+}
+
+###
+
+GET http://localhost:3000/api/users/5
+
+###
+
+DELETE http://localhost:3000/api/users/36
+
+###
+
+GET http://localhost:3000/api/entries/
+
+###
+
+GET http://localhost:3000/api/entries/2
+
+
+
+
+###
+
+PUT http://localhost:3000/api/entries/5
+Content-Type: application/json
+
+{
+    "note": "updated note2"
+}
+
+###
+
+DELETE http://localhost:3000/api/entries/7
+
+###
+
+GET http://localhost:3000/api/medications/
+
+###
+
+GET http://localhost:3000/api/medications/2
+
+###
+
+POST http://localhost:3000/api/medications
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "name": "megalääke",
+    "dosage": "300 mg",
+    "frequency": "every year",
+    "start_date": "2025-02-09",
+    "end_date": "2055-02-09"
+}
+
+###
+
+DELETE http://localhost:3000/api/medications/8
+
+###
+
+PUT http://localhost:3000/api/medications/5
+Content-type: application/json
+
+{
+    "dosage": "110 mg(changed)"
+}
+
+###
+GET http://localhost:3000/api/exercises
+
+###
+GET http://localhost:3000/api/exercises/1
+
+###
+POST http://localhost:3000/api/exercises
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "type": "Sleeping",
+    "duration": 365,
+    "intensity": "High"
+}
+
+###
+DELETE http://localhost:3000/api/exercises/8
+
+###
+PUT http://localhost:3000/api/exercises/9
+Content-Type: application/json
+
+{
+    "type": "Sleeping (More)"
+}
+
+
+
+###
+
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{   "username": "TomChanged2",
+    "password": "tompass",
+    "email": "tomChanged2@example.com"
+}
+
+###
+GET http://localhost:3000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6IlRvbUNoYW5nZWQyIiwiZW1haWwiOiJ0b21DaGFuZ2VkMkBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI0LTAxLTAxVDA3OjAwOjAwLjAwMFoiLCJ1c2VyX2xldmVsIjoicmVndWxhciIsImlhdCI6MTc0MDQwNzY2NCwiZXhwIjoxNzQwNDk0MDY0fQ.t-g_pobA1gZKsOv9HomICdPfqamfe6KZszaP41cNaQE
+###
+GET http://localhost:3000/api/entries/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6IlRvbUNoYW5nZWQyIiwiZW1haWwiOiJ0b21DaGFuZ2VkMkBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI0LTAxLTAxVDA3OjAwOjAwLjAwMFoiLCJ1c2VyX2xldmVsIjoicmVndWxhciIsImlhdCI6MTc0MDQwNzY2NCwiZXhwIjoxNzQwNDk0MDY0fQ.t-g_pobA1gZKsOv9HomICdPfqamfe6KZszaP41cNaQE
+###
+DELETE http://localhost:3000/api/entries/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNywidXNlcm5hbWUiOiJqb2huIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjUtMDItMjVUMDk6MDc6MTUuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzQwNzY0MDQzLCJleHAiOjE3NDA4NTA0NDN9.QbqEUIcLxYj2RRVRbSJZSk1vHdNcVsBeZLmwHvw_2JA
+###
+PUT http://localhost:3000/api/entries/7
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6IlRvbUNoYW5nZWQyIiwiZW1haWwiOiJ0b21DaGFuZ2VkMkBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI0LTAxLTAxVDA3OjAwOjAwLjAwMFoiLCJ1c2VyX2xldmVsIjoicmVndWxhciIsImlhdCI6MTc0MDM0NjUyNywiZXhwIjoxNzQwNDMyOTI3fQ.WHPxMHPOxG17JrvoGozxxyVMveE_VqK3aHP_LUZY4mw
+
+{
+    "entry_date": "2025-02-24",
+    "mood": "workingChanged",
+    "weight": 81,
+    "sleep_hours": 9,
+    "notes": "changed entry"
+}
+
+### id: 1
+### username: TomChangeLast
+### password: tomspass2
+###
+
+###
+PUT http://localhost:3000/api/users/45
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcm5hbWUiOiJqb2huMyIsImVtYWlsIjoiam9objNAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yOFQyMDo1ODoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQwOTQwNTM4LCJleHAiOjE3NDEwMjY5Mzh9.TbWbsNoq7Z3DP0bJKL1AktDAxnbIOhFLsQ3_YvFzV3o
+
+{
+    "username": "johnChanged4",
+    "password": "johnChangedpass4",
+    "email": "johnChanged@example.com"
+}
+
+###
+
+POST http://localhost:3000/api/users/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcm5hbWUiOiJqb2huMyIsImVtYWlsIjoiam9objNAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yOFQyMDo1ODoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQwOTQwNTM4LCJleHAiOjE3NDEwMjY5Mzh9.TbWbsNoq7Z3DP0bJKL1AktDAxnbIOhFLsQ3_YvFzV3o
+
+{
+    "username": "johnTest9",
+    "password": "johnTest9",
+    "email": "johnTest9@example.com",
+    "user_level": "regular"
+}
+
+###
+
+POST http://localhost:3000/api/entries
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNywidXNlcm5hbWUiOiJqb2huIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjUtMDItMjVUMDk6MDc6MTUuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzQwNzYwODIxLCJleHAiOjE3NDA4NDcyMjF9.j-eGzmlUDpxV4EZAwsWwSe5tp52xbEg2HZ40VlJ06Wk
+
+{
+    "entry_date": "2025/02/23",
+    "mood": "normal",
+    "weight": 79,
+    "sleep_hours": 13,
+    "notes": "testEntry"
+}
+
+###
+POST http://localhost:3000/api/auth/login/
+Content-Type: application/json
+
+{
+    "username": "john3",
+    "password": "johnpass3"
+}
+
+###
+POST http://localhost:3000/api/auth/login/
+Content-Type: application/json
+
+{
+    "username": "john99",
+    "password": "johnpass99"
+}
+
+### Get my user info
+GET http://localhost:3000/api/auth/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcm5hbWUiOiJqb2huMyIsImVtYWlsIjoiam9objNAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yOFQyMDo1ODoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQwNzc2MzA1LCJleHAiOjE3NDA4NjI3MDV9.Y4DZ4gstHBbtFXSknmaLGvV_BoZF0ifgtyTo15jQ8eo
+###
+DELETE  http://localhost:3000/api/users/41
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcm5hbWUiOiJqb2huMyIsImVtYWlsIjoiam9objNAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yOFQyMDo1ODoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQwODg2NzYyLCJleHAiOjE3NDA5NzMxNjJ9.0KSU2FiGYA6uEJ5bldsiI9msRoogNd8jHe1_17Br1G4
+
+###
+PUT http://localhost:3000/api/users/30
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNywidXNlcm5hbWUiOiJqb2huOTkiLCJlbWFpbCI6ImpvaG45OUBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI1LTAyLTI1VDA5OjA3OjE1LjAwMFoiLCJ1c2VyX2xldmVsIjoicmVndWxhciIsImlhdCI6MTc0MDg4Mzc2MiwiZXhwIjoxNzQwOTcwMTYyfQ.z0MvqtgmgHcdw2RjxeJ0V7SqyKANlor6Yx8Q1tsSDIc
+
+{
+    "username": "johnTest",
+    "password": "johnTestpass",
+    "email": "johhTest@example.com"
+}
+
+
+###
+GET http://localhost:3000/api/entries/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNywidXNlcm5hbWUiOiJqb2huIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjUtMDItMjVUMDk6MDc6MTUuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzQwNzQ5NDI5LCJleHAiOjE3NDA4MzU4Mjl9.h65c-5IetHSXi1fe-q779UbGXN97BXZUvcp0dcTT59o
