@@ -1,10 +1,10 @@
 import {
-  changeEntryById,
+  changePostById,
   listAllPosts,
   findEntryById,
   addNewPost,
-  deleteEntryById,
-  selectEntriesByUserId
+  deletePostById,
+  getUserPosts
 } from "../models/post-model.js";
 import { customError } from "../middlewares/error-handler.js";
 
@@ -27,9 +27,22 @@ const getPosts = async (req, res, next) => {
   }
 };
 
-const getUserEntries = async (req, res) => {
-  const enties = await selectEntriesByUserId(req.user.user_id);
-  res.json(enties)
+const getPostsById = async (req, res, next) => {
+  /*const enties = await selectEntriesByUserId(req.user.user_id);
+  res.json(enties)*/
+
+  const id = req.params.id;
+
+  try {
+    const posts = await getUserPosts(id);
+    if (!posts) {
+      return res.status(400).json({ message: 'posts not found' });
+    }
+    return res.json(posts);
+  } catch (e) {
+    next(e);
+  }
+
 };
 
 const getEntryById = async (req, res, next) => {
@@ -56,7 +69,7 @@ const getEntryById = async (req, res, next) => {
   
 };
 
-const deleteEntry = async (req, res, next) => {
+const deletePost = async (req, res, next) => {
   const id = req.params.id;
   console.log('delete entry by id', id);
 
@@ -75,11 +88,12 @@ const deleteEntry = async (req, res, next) => {
         return res.status(403).json({message: 'Forbidden'});
       }
 
-      const result = await deleteEntryById(id);
-      console.log(`entry id ${id} deleted`, result);
-
-      return res.status(200).json({ message: `entry id ${id} deleted` });
+      
     }
+    const result = await deletePostById(id);
+    console.log(`post id ${id} deleted`, result);
+
+    return res.status(200).json({ message: `post id ${id} deleted` });
   } catch (error) {
     next(customError(error.message, 400));
   }
@@ -87,21 +101,16 @@ const deleteEntry = async (req, res, next) => {
 
 
 
-const changeEntry = async (req, res, next) => {
+const changePost = async (req, res, next) => {
   const entryId = req.params.id;
-  const userId = req.user.user_id;
-  const check = checkLevel(req.user.user_level);
   try {
     let entry = await findEntryById(entryId);
     if (!entry) {
       return res.status(400).json({ message: 'invalid id, entry not found' });
     }
-    if (check === false) {
-      if (entry.user_id !== userId) {
-        return res.status(403).json({message: 'Forbidden'});
-      }
-    }
-    const result = await changeEntryById(entryId, req.body);
+    
+    
+    const result = await changePostById(entryId, req.body);
     console.log(`entry id ${entryId} changed onnistui`);
     
     return res.status(200).json({ message: `entry id ${entryId} changed`, result });
@@ -144,4 +153,4 @@ const addPost = async (req, res, next) => {
   }
 };*/
 
-export { getPosts, getEntryById, addPost, deleteEntry, getUserEntries, changeEntry };
+export { getPosts, getEntryById, addPost, deletePost, getPostsById, changePost };

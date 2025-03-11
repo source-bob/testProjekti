@@ -33,12 +33,13 @@ userRouter.route('/')
         changeUserData)
     
 userRouter.route('/:id')    
-    .get(getUserByID)
+    .get(authenticateToken, getUserByID)
     .post(login)
     .put(authenticateToken,
         body('email').trim().isEmail(),
         body('username').trim().isLength({min: 3, max: 20}).isAlphanumeric(),
         body('password').trim().isLength({min: 8}).isAlphanumeric(),
+        body('user_level').trim().isLength({min: 3}),
         validationErrorHandler,
         editUserByID)
     .delete(authenticateToken, deleteUser);

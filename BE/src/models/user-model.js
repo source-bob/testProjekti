@@ -16,13 +16,14 @@ const selectAllUsers = async () => {
 
 const changeUserById = async (id, data) => {
     try {
-        const { username, password, email } = data;
+        console.log('BODY DATA:', data);
+        const { username, password, email, user_level } = data;
         const sqlQuery = `
         UPDATE users
-        SET username = ?, password = ?, email = ?
+        SET username = ?, password = ?, email = ?, user_level = ?
         WHERE user_id = ?`;
 
-        const values = [username, password, email, id];
+        const values = [username, password, email, user_level, id];
         const [result] = await promisePool.query(sqlQuery, values);
 
         return { updated: result.affectedRows > 0 };
@@ -145,9 +146,9 @@ const selectUserByUsername = async (username) => {
     }
 };
 
-const editUser = async (id, username, pass, email) => {
+const editUser = async (id, username, pass, email, user_level) => {
     const sql = `UPDATE users
-                SET password = '${pass}', username = '${username}', email = '${email}'
+                SET password = '${pass}', username = '${username}', email = '${email}', user_level = '${user_level}'
                 WHERE user_id = ${id}`;
     try {
         const users = await promisePool.query(sql);

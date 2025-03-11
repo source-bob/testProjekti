@@ -9,9 +9,9 @@
     <div class="app">
         <span id="admin-p">Admin menu</span>
         <div id="admin-panel">
-            <div class="admin-panel-line">
-                <div class="admin-panel-part2">
-                    ADMIN INFO
+            <div class="admin-panel-line" id="main-admin-line">
+                <div class="admin-panel-part2" id="user-info-block">
+                    <div id="user-span">User info</div>
                 </div>
                 <div class="admin-panel-part2"></div>
                 <div class="admin-panel-part2">
@@ -22,34 +22,20 @@
                         <button class="menu-butt" id="get-all-users">Get all users</button>
                     </div>
                     <div class="button-div">
-                        <button class="menu-butt">Find user</button>
+                        <button class="menu-butt" id="find-user">Find user</button>
                     </div>
                     <div class="button-div">
-                        <button class="menu-butt">Find post</button>
+                        <button class="menu-butt" id="get-all-posts">Get all posts</button>
                     </div>
-                    
+                    <div class="button-div">
+                        <button class="menu-butt" id="logout">logout</button>
+                    </div>
                 </div>
             </div>
             <div class="admin-panel-line" id="users-window">
-                <table class="styled-table">
-                    <thead>
-                      <tr>
-                        <th>User Name</th>
-                        <th>Email</th>
-                        <th>Info</th>
-                        <th>Delete</th>
-                        <th>ID</th>
-                      </tr>
-                    </thead>
-                    <tbody class="tbody">
-                    <!-- tänne haetaan kaikki käyttäjät -->
-                    <!-- # Get all users -->
-                    <!-- GET http://127.0.0.1:3000/api/users -->
-                    </tbody>
-                </table>
+                <div class="tbody"></div>
             </div>
-            <div class="admin-panel-line" id="notes-window">
-            </div>
+            <div class="admin-panel-line" id="notes-window"></div>
         </div>
     </div>
     <dialog class="info_dialog">

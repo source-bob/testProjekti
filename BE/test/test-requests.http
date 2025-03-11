@@ -214,36 +214,38 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0Miwid
 
 POST http://localhost:3000/api/users/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcm5hbWUiOiJqb2huMyIsImVtYWlsIjoiam9objNAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yOFQyMDo1ODoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQwOTQwNTM4LCJleHAiOjE3NDEwMjY5Mzh9.TbWbsNoq7Z3DP0bJKL1AktDAxnbIOhFLsQ3_YvFzV3o
 
 {
-    "username": "johnTest9",
-    "password": "johnTest9",
-    "email": "johnTest9@example.com",
-    "user_level": "regular"
+    "username": "john",
+    "password": "johnpass",
+    "email": "john@example.com",
+    "user_level": "admin"
 }
 
 ###
 
-POST http://localhost:3000/api/entries
+DELETE http://localhost:3000/api/posts/14
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNywidXNlcm5hbWUiOiJqb2huIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjUtMDItMjVUMDk6MDc6MTUuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzQwNzYwODIxLCJleHAiOjE3NDA4NDcyMjF9.j-eGzmlUDpxV4EZAwsWwSe5tp52xbEg2HZ40VlJ06Wk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImpvaG4iLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJyZWdpc3RlcmVkX2F0IjoiMjAyNS0wMy0wN1QwODoyNjoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQxNTM4NTEyLCJleHAiOjE3NDE2MjQ5MTJ9.Y_WOPMqmqYEdmVzWOQU5GSpCJYbVYKIKZZW24SNEErA
 
-{
-    "entry_date": "2025/02/23",
-    "mood": "normal",
-    "weight": 79,
-    "sleep_hours": 13,
-    "notes": "testEntry"
-}
 
 ###
 POST http://localhost:3000/api/auth/login/
 Content-Type: application/json
 
 {
-    "username": "john3",
-    "password": "johnpass3"
+    "username": "john",
+    "password": "johnpass"
+}
+
+###
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImpvaG4iLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJyZWdpc3RlcmVkX2F0IjoiMjAyNS0wMy0wN1QwODoyNjoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQxNTM4NTEyLCJleHAiOjE3NDE2MjQ5MTJ9.Y_WOPMqmqYEdmVzWOQU5GSpCJYbVYKIKZZW24SNEErA
+
+{
+    "user_id": 7,
+    "note": "testi 12"
 }
 
 ###
@@ -259,21 +261,19 @@ Content-Type: application/json
 GET http://localhost:3000/api/auth/me
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcm5hbWUiOiJqb2huMyIsImVtYWlsIjoiam9objNAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yOFQyMDo1ODoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQwNzc2MzA1LCJleHAiOjE3NDA4NjI3MDV9.Y4DZ4gstHBbtFXSknmaLGvV_BoZF0ifgtyTo15jQ8eo
 ###
-DELETE  http://localhost:3000/api/users/41
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcm5hbWUiOiJqb2huMyIsImVtYWlsIjoiam9objNAZXhhbXBsZS5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNS0wMi0yOFQyMDo1ODoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQwODg2NzYyLCJleHAiOjE3NDA5NzMxNjJ9.0KSU2FiGYA6uEJ5bldsiI9msRoogNd8jHe1_17Br1G4
+DELETE  http://localhost:3000/api/users/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImpvaG4iLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJyZWdpc3RlcmVkX2F0IjoiMjAyNS0wMy0wN1QwODoyNjoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQxNTM4NTEyLCJleHAiOjE3NDE2MjQ5MTJ9.Y_WOPMqmqYEdmVzWOQU5GSpCJYbVYKIKZZW24SNEErA
 
 ###
-PUT http://localhost:3000/api/users/30
+PUT http://localhost:3000/api/posts/10
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNywidXNlcm5hbWUiOiJqb2huOTkiLCJlbWFpbCI6ImpvaG45OUBleGFtcGxlLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDI1LTAyLTI1VDA5OjA3OjE1LjAwMFoiLCJ1c2VyX2xldmVsIjoicmVndWxhciIsImlhdCI6MTc0MDg4Mzc2MiwiZXhwIjoxNzQwOTcwMTYyfQ.z0MvqtgmgHcdw2RjxeJ0V7SqyKANlor6Yx8Q1tsSDIc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImpvaG4iLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJyZWdpc3RlcmVkX2F0IjoiMjAyNS0wMy0wN1QwODoyNjoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQxNTM4NTEyLCJleHAiOjE3NDE2MjQ5MTJ9.Y_WOPMqmqYEdmVzWOQU5GSpCJYbVYKIKZZW24SNEErA
 
 {
-    "username": "johnTest",
-    "password": "johnTestpass",
-    "email": "johhTest@example.com"
+    "note": "changed note2"
 }
 
 
 ###
-GET http://localhost:3000/api/entries/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNywidXNlcm5hbWUiOiJqb2huIiwiZW1haWwiOiJqb2huQGV4YW1wbGUuY29tIiwiY3JlYXRlZF9hdCI6IjIwMjUtMDItMjVUMDk6MDc6MTUuMDAwWiIsInVzZXJfbGV2ZWwiOiJyZWd1bGFyIiwiaWF0IjoxNzQwNzQ5NDI5LCJleHAiOjE3NDA4MzU4Mjl9.h65c-5IetHSXi1fe-q779UbGXN97BXZUvcp0dcTT59o
+GET http://localhost:3000/api/posts/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6ImpvaG4iLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJyZWdpc3RlcmVkX2F0IjoiMjAyNS0wMy0wN1QwODoyNjoxMS4wMDBaIiwidXNlcl9sZXZlbCI6ImFkbWluIiwiaWF0IjoxNzQxNTM4NTEyLCJleHAiOjE3NDE2MjQ5MTJ9.Y_WOPMqmqYEdmVzWOQU5GSpCJYbVYKIKZZW24SNEErA

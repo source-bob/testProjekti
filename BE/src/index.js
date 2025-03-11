@@ -1,8 +1,6 @@
 import express from 'express';
 import postRouter from './routes/post-router.js';
 import userRouter from './routes/user-router.js';
-import medicationRouter from './routes/medication-router.js';
-import exerciseRouter from './routes/exercise-router.js';
 import authRouter from './routes/auth-router.js';
 import cors from 'cors';
 import { notFoundHandler, errorHandler } from './middlewares/error-handler.js';
@@ -17,8 +15,6 @@ app.use('/', express.static('src/public'));
 app.use(express.json());
 app.use('/api/users', userRouter);
 app.use('/api/posts', postRouter);
-app.use('/api/medications', medicationRouter);
-app.use('/api/exercises', exerciseRouter);
 app.use('/api/auth', authRouter);
 
 

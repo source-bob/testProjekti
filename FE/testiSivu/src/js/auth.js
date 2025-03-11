@@ -1,6 +1,7 @@
 import '../css/style.css';
 import '../css/login.css';
 import { fetchData } from './fetch.js';
+import { createMessage } from './posts.js';
 
 const loginUser = async (event) => {
     event.preventDefault();
@@ -36,6 +37,13 @@ const loginUser = async (event) => {
 
     if (response.error) {
         console.error('error login', response.error);
+        
+
+        const mainBlock = document.querySelector('.app');
+        const message = await createMessage(response.error);
+
+        mainBlock.appendChild(message);
+
         return;
     }
 
@@ -43,7 +51,9 @@ const loginUser = async (event) => {
         console.log(response.message, 'success');
         localStorage.setItem('token', response.token);
         localStorage.setItem('nimi', response.user.username);
+        localStorage.setItem('user_id', response.user.user_id);
         localStorage.setItem('user_level', response.user.user_level);
+        localStorage.setItem('email', response.user.email);
     }
 
     console.log(response);
@@ -54,7 +64,15 @@ const loginUser = async (event) => {
         window.location.href = 'regular.html';
     }
     loginForm.reset(); // tyhjennetään formi
+    
 };
 
-const logIn = document.querySelector('.loginForm');
-logIn.addEventListener('submit', loginUser);
+const logout = async () => {
+    window.location.href = 'login.html';
+    localStorage.clear();
+};
+
+
+
+
+export { logout, loginUser };

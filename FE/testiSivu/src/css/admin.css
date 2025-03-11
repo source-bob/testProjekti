@@ -20,7 +20,8 @@
 
 #admin-panel {
     width: 100%;
-    background-color: brown;
+    background-color: black;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 1);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -33,53 +34,74 @@
 
 .admin-panel-line {
     width: 100%;
-    height: 50%;
     display: flex;
     flex-direction: row;
     padding: 2.5%;
     box-sizing: border-box;
 }
 
-.tbody {
-    width: 80%;
-    height: 100%;
-    background-color: beige;
-    margin: 7% 10%;
-    box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
+#main-admin-line {
+    height: 30%;
 }
 
 #users-window {
-    max-height: 40%;
-    min-height: 40%;
+    height: 30%;
     width: 100%;
-    overflow-y: auto;
     background-color: white;
 }
   
 #notes-window {
-    height: 60%;
-    width: 90%;
-    margin: 0 5%;
+    height: 70%;
+    width: 95%;
+    margin: 2.5%;
     overflow-y: auto;
-    background-color: blue;
+    background-color: white;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    padding-bottom: 0;
 }
 
 .post-div {
-    background-color: #009842;
-    width: 90%;
-    height: auto;
-    margin: 5%;
+    width: 100%;
+    margin-bottom: 2.5%;
     display: flex;
+    border: none;
 }
 
 .post-text {
     height: 100%;
-    width: 70%;
+    width: 60%;
     background-color: grey;
+    box-sizing: border-box;
+}
+
+.post-buttons {
+    width: 10%;
+    height: 100%;
+    background-color: burlywood;
+}
+
+.post-button {
+    width: 100%;
+    height: calc(100%/3);
+    background-color: darkblue;
+    box-sizing: border-box;
+    border: 1px solid black;
+    font-size: 80%;
+    
+    display: flex;
+    justify-content: center;
+}
+
+.user-id-header {
+    width: 65%;
+    height: 100%;
+}
+
+.user-id-value {
+    width: 35%;
+    height: 100%;
 }
 
 .post-date {
@@ -93,7 +115,18 @@
     width: 100%;
     height: 50%;
     background-color: coral;
-    display: block;
+    display: flex;
+}
+
+.post-number-header {
+    width: 70%;
+    height: 100%;
+    text-align: right;
+}
+
+.post-number-value {
+    width: 30%;
+    height: 100%;
 }
 
 .post-info {
@@ -103,14 +136,23 @@
     flex-direction: column;
 }
 
+#post-edit-form-text {
+    height: 20%;
+}
+
 .admin-panel-part2 {
     width: calc(100%/3);
-    background-color: bisque;
+    background-color: black;
+    height: 100%;
 }
 
 .button-div {
     width: 100%;
     display: flex;
+}
+
+.button-div:nth-child(1) {
+    margin-top: 15%;
 }
 
 .spec-menu-butt {
@@ -125,8 +167,85 @@
 }
 
 .menu-butt {
-    background-color: blue;
+    background-color: darkblue;
     width: 100%;
     display: block;
     box-sizing: border-box;
+}
+
+.user-div {
+    width: 95%;
+    min-height: 20%;
+    display: flex;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    margin-left: 2.5%;
+    border: 2px solid black;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    color: black;
+    border-radius: 2%;
+}
+
+.user-info-div {
+    width: 70%;
+    min-height: 100%;
+    display: flex;
+}
+
+.user-buttons-div {
+    width: 30%;
+    height: 100%;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-top:  0.5%;
+}
+
+.tbody {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    
+    box-sizing: border-box;
+}
+
+.username-div {
+    width: 80%;
+    height: 100%;
+}
+
+.user-id-div {
+    width: 20%;
+    height: 100%;
+    background-color: darkblue;
+    color: white;
+}
+
+.button-rivi {
+    width: 100%;
+    height: 50%;
+    background-color: pink;
+    display: flex;
+    box-sizing: border-box;
+    font-size: 60%;
+}
+
+.user-button {
+    width: 50%;
+    height: 100%;
+    background-color: black;
+    border: 2px solid white;
+    box-sizing: border-box;
+    color: white;
+}
+
+#user-name-value {
+    margin-top: 2.5%;
 }

@@ -10,14 +10,27 @@
         REGULAR
         <div class="regular-panel">
             <div class="regular-panel-line">
-                <div class="regular-panel-part">User info</div>
-                <div class="regular-panel-part">control panel</div>
+                <div class="regular-panel-part" id="user-info-block"><div id="user-span">User info</div></div>
+                <div class="regular-panel-part">logo</div>
+                <div class="regular-panel-part">
+                    <div class="regular-panel-button" id="edit-own-info">edit own info</div>
+                    <div class="regular-panel-button" id="create-post">create post</div>
+                    <div class="regular-panel-button" id="find-own-posts">find own posts</div>
+                    <div class="regular-panel-button" id="show-all-posts">all posts</div>
+                    <div class="regular-panel-button" id="logout">logout</div>
+                </div>
             </div>
             <div class="regular-panel-posts">
                 <div class="tbody2"></div>
             </div>
         </div>
     </div>
+    <dialog class="info_dialog">
+        <p>
+         
+        </p>
+        <button autofocus>Close</button>
+    </dialog>
 </body>
 <script type="module" src="/src/js/regular.js"></script>
 </html>

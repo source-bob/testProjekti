@@ -5,64 +5,52 @@
 
 .regular-panel-line {
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
+    color: white;
 }
 
 .regular-panel-part {
-    width: 50%;
+    width: calc(100%/3);
     height: 100%;
-    background-color: blue;
+    background-color: black;
+}
+
+.regular-panel-button {
+    width: 100%;
+    height: 16%;
+    background-color: darkblue;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.regular-panel-button:nth-child(1) {
+    margin-top: 13%;
 }
 
 .regular-panel-posts {
-    height: 70%;
+    height: 80%;
     width: 100%;
-    background-color: blueviolet;
+    background-color: black;
     overflow: hidden;
 }
 
 .tbody2 {
-    width: 80%;
-    height: 80%;
-    background-color: beige;
-    margin: 7% 10%;
+    width: 90%;
+    height: 90%;
+    background-color: white;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 1);
+    margin: 4.5% 5%;
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 .post-div {
-    background-color: #009842;
+    color: black;
     width: 90%;
-    height: 25%;
-    margin: 5%;
+    margin-left: 5%;
+    height: 12vh;
+    margin-bottom: 2.5%;
     display: flex;
-}
-
-.post-text {
-    height: 100%;
-    width: 70%;
-    background-color: grey;
-}
-
-.post-date {
-    width: 100%;
-    height: 50%;
-    background-color: brown;
-    display: block;
-}
-
-.post-number {
-    width: 100%;
-    height: 50%;
-    background-color: coral;
-    display: block;
-}
-
-.post-info {
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }

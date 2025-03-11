@@ -1,9 +1,9 @@
 import express from 'express';
 import {
-  getEntryById,
+  getPostsById,
   addPost,
-  changeEntry,
-  deleteEntry,
+  changePost,
+  deletePost,
   getPosts,
 } from '../controllers/post-controller.js';
 import {body} from 'express-validator';
@@ -17,24 +17,17 @@ postRouter.route('/')
   .post(
     authenticateToken,
     body('user_id').trim().isNumeric(),
-    body('note').trim(),
+    body('note').trim().isLength({max: 150}),
     validationErrorHandler,
     addPost
   );
 
 postRouter.route('/:id')
-  .get(authenticateToken, getEntryById)
+  .get(authenticateToken, getPostsById)
   .put(authenticateToken,
-    body('mood').trim().isLength({min: 2, max: 20}).isAlphanumeric(),
-    body('entry_date').trim().isDate(),
-    body('weight').trim().isNumeric({min: 15, max: 150}),
-    body('sleep_hours').trim().isNumeric({min: 0, max: 24}),
-    body('notes').trim().escape().custom((value, {req}) => {
-      console.log('custom validator', value);
-      return !(req.body.mood === value);
-    }),
+    body('note').trim().isLength({max: 150}),
     validationErrorHandler,
-    changeEntry)
-  .delete(authenticateToken, deleteEntry);
+    changePost)
+  .delete(authenticateToken, deletePost);
 
 export default postRouter;

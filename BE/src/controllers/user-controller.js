@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { changeUserById, getAllUsers, findUserById, addUser, changePassByID, deleteUserById, editUser } from "../models/user-model.js";
+import { getAllUsers, findUserById, addUser, changePassByID, deleteUserById, editUser } from "../models/user-model.js";
 
 import { customError } from '../middlewares/error-handler.js';
 
@@ -61,6 +61,23 @@ const getUsers = async (req, res) => {
   }
 };*/
 
+const registerUser = async (req, res, next) => {
+  
+  try {
+    const { username, password, email } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = { username, password: hashedPassword, email, user_level: 'regular' };
+
+    const result = await addUser(newUser);
+
+    res.status(201).json({ message: `User added. ID: ${result}` });
+  } catch (e) {
+    next(customError(e.message, 400));
+  }
+};
+
 
 const newUser = async (req, res, next) => {
   const check = await checkLevel(req.user.user_level);
@@ -91,12 +108,9 @@ const newUser = async (req, res, next) => {
 
 const editUserByID = async (req, res, next) => {
   const id = req.params.id;
-  const { username, password, email } = req.body;
-  const check = await checkLevel(req.user.user_level);
+  const { username, password, email, user_level } = req.body;
   
-  if (check === false) {
-    return next(customError('access denied'));
-  }
+  
   console.log('Change user by ID:', id);
   console.log('Request body:', req.body);
 
@@ -110,7 +124,7 @@ const editUserByID = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const result = await editUser(id, username, hashedPassword, email);
+    const result = await editUser(id, username, hashedPassword, email, user_level);
     console.log(`User ID ${id} data changed`, result);
 
     res.status(200).json({
@@ -223,21 +237,37 @@ const deleteUser = async (req, res, next) => {
 
 
 const changeUserData = async (req, res, next) => {
-  const userId = req.user.user_id;
+  const id = req.params.id;
   const { username, password, email } = req.body;
+  const check = await checkLevel(req.user.user_level);
   
+  if (check === false) {
+    return next(customError('access denied'));
+  }
+  console.log('Change user by ID:', id);
+  console.log('Request body:', req.body);
+
   try {
+    let user = await findUserById(id);
+    if (!user) {
+      return next(customError(`User with ID ${id} not found`, 404));
+    }
+
+    // Хеширование пароля
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const result = await changeUserById(userId, { username, password: hashedPassword, email });
-    console.log(`user id ${userId} data changed`, result);
 
-    res.json({message: `user id ${userId} change onnistui`});
-    res.status(200);
+    const result = await editUser(id, username, hashedPassword, email);
+    console.log(`User ID ${id} data changed`, result);
+
+    res.status(200).json({
+      message: `Data changed for user ID ${id}`,
+      new_data: { username, email },
+    });
   } catch (e) {
-    next(e);
+    next(customError(e.message, 400));
   }
 };
 
 
-export { changeUserData, getUsers, getUserByID, newUser, login, changePasswordByID, deleteUser, editUserByID};
+export { changeUserData, getUsers, getUserByID, newUser, login, changePasswordByID, deleteUser, editUserByID, registerUser};

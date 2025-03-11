@@ -2,10 +2,10 @@
 // How to handle errors in controller?
 import promisePool from '../utils/database.js';
 
-const changeEntryById = async (id, entry) => {
-  const { entry_date, mood, weight, sleep_hours, notes } = entry;
-  const sql = `UPDATE diaryentries
-                SET entry_date = "${entry_date}", mood = "${mood}", weight = ${weight}, sleep_hours = ${sleep_hours}, notes = "${notes}"
+const changePostById = async (id, entry) => {
+  const note = entry.note;
+  const sql = `UPDATE posts
+                SET note = "${note}"
                 WHERE entry_id = ${id}`;
     
     try {
@@ -30,7 +30,7 @@ const listAllPosts = async () => {
 
 const findEntryById = async (id) => {
   try {
-    const [rows] = await promisePool.query('SELECT * FROM DiaryEntries WHERE entry_id = ?', [id]);
+    const [rows] = await promisePool.query('SELECT * FROM posts WHERE entry_id = ?', [id]);
     console.log('rows', rows);
     return rows[0];
   } catch (e) {
@@ -68,8 +68,8 @@ const addNewPost = async (entry) => {
     }
 };*/
 
-const deleteEntryById = async (id) => {
-    const sql = `DELETE FROM diaryentries
+const deletePostById = async (id) => {
+    const sql = `DELETE FROM posts
                 WHERE entry_id = ${id}`;
     try {
         const response = await promisePool.query(sql);
@@ -80,10 +80,10 @@ const deleteEntryById = async (id) => {
     }
 };
 
-const selectEntriesByUserId = async (userId) => {
+const getUserPosts = async (userId) => {
   try {
     const [rows] = await promisePool.query(
-      'SELECT * FROM DiaryEntries WHERE user_id=?',
+      'SELECT * FROM posts WHERE user_id=?',
       [userId],
     );
     console.log(rows);
@@ -94,4 +94,4 @@ const selectEntriesByUserId = async (userId) => {
   }
 };
 
-export { listAllPosts, findEntryById, addNewPost, deleteEntryById, selectEntriesByUserId, changeEntryById };
+export { listAllPosts, findEntryById, addNewPost, deletePostById, getUserPosts, changePostById };
