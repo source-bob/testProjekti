@@ -13,6 +13,7 @@ Wall
 ### **1. Склонировать репозиторий:**  
 
 git clone https://github.com/source-bob/testProjekti.git
+
 cd testProjekti
 
 ### **2. Установить зависимости:**
