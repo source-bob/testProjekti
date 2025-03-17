@@ -1,87 +1,84 @@
-Wall
+# Wall
 
 ## Screenshots
 ![start window](screenshots/start.png)
 ![regular user window](screenshots/regular.png)
 ![admin window](screenshots/admin.png)
 
-## Доступ к приложению  
+## Application Access  
 🔹 **Frontend:** [my-app-frontend](https://github.com/source-bob/testProjekti/tree/last/FE/testiSivu)  
 🔹 **Backend:** [my-app-backend](https://github.com/source-bob/testProjekti/tree/last/BE)
 
-## Запуск проекта локально  
-### **1. Склонировать репозиторий:**  
+## Running the Project Locally 
+### **1. Clone the repository:**  
 
-git clone https://github.com/source-bob/testProjekti.git
+- git clone https://github.com/source-bob/testProjekti.git
+- cd testProjekti
 
-cd testProjekti
+### **2. Install dependencies:**
+**Backend:**
+- cd BE
+- npm install
 
-### **2. Установить зависимости:**
-Backend:
-cd BE
-npm install
+**Frontend:**
+- cd ../FE/testiSivu
+- npm install
 
-Frontend:
-cd ../FE/testiSivu
-npm install
+### **3. Start the server and client:**
+**Backend:**
+- npm run dev
 
-### **3. Запустить сервер и клиент:**
-Backend:
-npm run dev
-
-Frontend:
-npm run dev
+**Frontend:**
+- npm run dev
 
 
-## API-документация
-**Файл с тестовыми запросами API:**  
+## API Documentation
+**Test API requests file:**  
 [test-requests.http](BE/test/test-requests.http) 
 
-**Base URL API (локально):**  
+**Base API URL (local):**  
 `http://localhost:3000/api`
 
 ### Auth
-- POST    /api/auth/register  - регистрация пользователя
-- POST    /api/auth/login     - вход в систему
-- GET     /api/auth/me        - проверка токена
+- POST    /api/auth/register  - register a new user
+- POST    /api/auth/login     - log in and receive a token
+- GET     /api/auth/me        - verify token
 
 ### Post
-- GET     /api/posts          - получить все посты
-- POST    /api/posts          - создать пост
-
-- GET     /api/posts/:id      - найти посты пользователя
-- PUT     /api/posts/:id      - редактировать пост
-- DELETE  /api/posts/:id      - удалить пост
+- GET     /api/posts          - get all posts
+- POST    /api/posts          - create a new post
+- GET     /api/posts/:id      - get posts by user ID
+- PUT     /api/posts/:id      - edit a post by ID
+- DELETE  /api/posts/:id      - delete a post by ID
 
 ### User
-- GET     /api/users          - получить всех пользователей
-- POST    /api/users          - создать пользователя
+- GET     /api/users          - get all users
+- POST    /api/users          - create a user
+- GET     /api/users/:id      - get a user
+- PUT     /api/users/:id      - update a user
+- DELETE  /api/users/:id      - delete a user by ID
 
-- GET     /api/users/:id      - получить пользователя
-- PUT     /api/users/:id      - обновить пользователя
-- DELETE  /api/users/:id      - удалить пользователя
-
-## Структура базы данных
-**SQL-скрипт для создания базы:**  
+## Database Structure
+**SQL script for database creation:**  
 [db-script.sql](BE/db/db-script.sql)
 
 - users (user_id PK, username, password, email, user_level,  registered_at)  
 - posts (entry_id PK, user_id FK, note, created_at) 
 
-## Реализованные функции  
-✅ Регистрация и авторизация пользователей  
-✅ Добавление, редактирование и удаление постов
-✅ все запросы API с JWT-авторизацией (кроме регистрации и логина)
+## Implemented Features
+- User registration and authentication
+- Creating, editing, and deleting posts
+- All API requests require JWT authentication (except registration and login)
 
-## Известные проблемы  
-❌ Информация на странице иногда не обновляется (но в БД обновляется)
-❌ Логотип поддерживает только один размер. Нужно добавить поддержку адаптивных изображений.
-❌ Некоторые сообщения об ошибках не отображаются у администратора. Возможно, ошибка в обработке исключений.
+## Known Issues
+- Page information sometimes does not update (but the database updates correctly)
+- Logo supports only one size. Adaptive image support is needed.
+- Some error messages do not appear for the admin. Possible issue with exception handling.
 
-## Используемые технологии  
+## Technologies Used 
 - [React](https://react.dev) + [Vite](https://vite.dev)
 - [Express.js](https://expressjs.com) + [MySQL](https://www.mysql.com)  
-- [JWT](https://jwt.io) для аутентификации 
+- [JWT](https://jwt.io) for authentication
 
  
 
