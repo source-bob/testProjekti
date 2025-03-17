@@ -20,3 +20,6 @@ CREATE TABLE Posts (
     created_at      DATETIME DEFAULT  CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES  Users(user_id) ON DELETE CASCADE
 );
+
+INSERT INTO users (username, email, password, user_level)  
+VALUES ('MainAdmin', 'mainadmin@example.com', '$2a$10$aYWMt0zXw0lhXhLsd8yXUevcUshII3KN8J9FuAErBAvxI6aA9sRG2', 'admin');

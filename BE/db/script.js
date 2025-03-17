@@ -6,4 +6,4 @@ const getPass = async (password) => {
     console.log(hashedPassword);
 }
 
-getPass('johnpass99');
+getPass('adminpass');

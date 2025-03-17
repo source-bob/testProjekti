@@ -65,10 +65,6 @@
 - users (user_id PK, username, password, email, user_level,  registered_at)  
 - posts (entry_id PK, user_id FK, note, created_at) 
 
-**Before the first launch, it is recommended to manually create an admin:**
-INSERT INTO users (username, email, password, user_level)  
-VALUES ('new_user', 'user@example.com', 'HASHED_PASSWORD', 'admin');
-
 ## Implemented Features
 - User registration and authentication
 - Creating, editing, and deleting posts
