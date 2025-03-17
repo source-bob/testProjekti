@@ -12,7 +12,7 @@ CREATE TABLE Users (
     registered_at  DATETIME        DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create a table for diary entries
+-- Create a table for posts
 CREATE TABLE Posts (
     entry_id        INT               AUTO_INCREMENT PRIMARY KEY,
     user_id         INT,

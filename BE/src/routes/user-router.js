@@ -6,8 +6,6 @@ import {
     editUserByID,
     getUserByID,
     getUsers,
-    login,
-    changeUserData,
 } from '../controllers/user-controller.js';
 import { authenticateToken } from '../middlewares/authentication.js';
 import { validationErrorHandler } from '../middlewares/error-handler.js';
@@ -25,16 +23,9 @@ userRouter.route('/')
         validationErrorHandler,
         newUser
     )
-    .put(authenticateToken,
-        body('email').trim().isEmail(),
-        body('username').trim().isLength({min: 3, max: 20}).isAlphanumeric(),
-        body('password').trim().isLength({min: 8}).isAlphanumeric(),
-        validationErrorHandler,
-        changeUserData)
     
 userRouter.route('/:id')    
     .get(authenticateToken, getUserByID)
-    .post(login)
     .put(authenticateToken,
         body('email').trim().isEmail(),
         body('username').trim().isLength({min: 3, max: 20}).isAlphanumeric(),

@@ -5,6 +5,12 @@ import { addUser, getUsers, findUser, fillUserData } from './users.js';
 import { getPosts } from './posts.js';
 import { logout } from './auth.js';
 
+const tbody2 = document.querySelector('.tbody');
+
+tbody2.addEventListener('scroll', () => {
+    const scrollTop = tbody2.scrollTop;
+    tbody2.style.backgroundPosition = `center ${-scrollTop}px`;
+});
 
 
 

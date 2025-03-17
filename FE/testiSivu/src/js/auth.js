@@ -1,5 +1,4 @@
 import '../css/style.css';
-import '../css/login.css';
 import { fetchData } from './fetch.js';
 import { createMessage } from './posts.js';
 

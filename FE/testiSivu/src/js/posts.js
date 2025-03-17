@@ -36,7 +36,7 @@ const createPostBlock = (post) => {
 
     if (userLevel === 'admin' || post.user_id === parseInt(userId)) {
         
-        const editPostButton = document.createElement('div');
+        const editPostButton = document.createElement('button');
         editPostButton.className = 'post-button';
         editPostButton.id = 'edit-post-button';
         editPostButton.textContent = 'edit';
@@ -56,7 +56,7 @@ const createPostBlock = (post) => {
         postUserId.appendChild(userIdHeader);
         postUserId.appendChild(userIdValue);
 
-        const deletePostButton = document.createElement('div');
+        const deletePostButton = document.createElement('button');
         deletePostButton.className = 'post-button';
         deletePostButton.id = 'delete-post-button';
         deletePostButton.textContent = 'delete';
@@ -127,21 +127,15 @@ const getPosts = async () => {
     };
     
 
-    const posts = await fetchData(url, options);
-
+    const reversedPosts = await fetchData(url, options);
+    const posts = reversedPosts.reverse();
     if (posts.error) {
         console.log('tapahtui virhe fetch haussa');
         return
     }
 
     console.log(posts);
-    let tableBody;
-
-    if (localStorage.getItem('user_level') === 'regular') {
-        tableBody = document.querySelector('.tbody2');
-    } else if (localStorage.getItem('user_level') === 'admin') {
-        tableBody = document.getElementById('notes-window');
-    }
+    const tableBody = document.querySelector('.tbody');
     tableBody.innerHTML = ''; // tyhjennetään taulukko
 
     posts.forEach((post) => {
@@ -176,11 +170,9 @@ const getPostsById = async (id) => {
 
     console.log('RESPONSE:', response);
     let tableBody;
-    if (localStorage.getItem('user_level') === 'admin') {
-        tableBody = document.getElementById('notes-window');
-    } else if (localStorage.getItem('user_level') === 'regular') {
-        tableBody = document.querySelector('.tbody2');
-    }
+    
+
+    tableBody = document.querySelector('.tbody');
     
     tableBody.innerHTML = '';
     response.forEach((post) => {
@@ -255,8 +247,14 @@ const editPost = async (id, postText) => {
         const response = await fetchData(url, options);
 
         if (response.error) {
+            console.log('tapahtui virhe fetch haussa');
             console.log(response.error);
-            return
+            const messageText = 'text must be at min 5 and max 150 symbols';
+            const mainBlock = document.querySelector('.app');
+            const message = await createMessage(messageText);
+    
+            mainBlock.appendChild(message);
+            return response; // Возвращаем response, даже если ошибка
         }
 
         if (response.message) {
@@ -264,6 +262,7 @@ const editPost = async (id, postText) => {
         }
 
         getPosts();
+        dialog.close();
 
 
         
@@ -369,8 +368,14 @@ const addPost = async () => {
         const response = await fetchData(url, options);
 
         if (response.error) {
+            console.log('tapahtui virhe fetch haussa');
             console.log(response.error);
-            return
+            const messageText = 'text must be at min 5 and max 150 symbols';
+            const mainBlock = document.querySelector('.app');
+            const message = await createMessage(messageText);
+    
+            mainBlock.appendChild(message);
+            return response; // Возвращаем response, даже если ошибка
         }
 
         if (response.message) {

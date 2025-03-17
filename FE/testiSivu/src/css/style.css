@@ -3,7 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: indigo;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -14,14 +14,25 @@
   --main-color: red;
 }
 
+@font-face {
+  font-family: 'Lexend';
+  src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
+  font-family: 'Lexend', sans-serif;
   width: 100vh;
   height: 120vh;
   max-width: 1024px;
-  max-height: 900px;
+  max-height: 1280px;
+  min-width: 320px;
+  min-height: 900px;
   background-color: white;
   text-align: center;
   margin: auto;
+  color: black;
 }
 
 .app {
@@ -32,8 +43,6 @@ body {
   flex-direction: column;
 }
 
-
-
 #notes-window2 {
   height: 100%;
   width: 100%;
@@ -43,7 +52,7 @@ body {
 
 
 .post-div {
-  width: 100%;
+  width: 90%;
   height: 10vh;
   margin-bottom: 2.5%;
   margin-top: 2.5%;
@@ -59,12 +68,13 @@ body {
 .post-buttons {
   width: 10%;
   height: 100%;
+  
 }
 
 .post-button {
   width: 100%;
   height: calc(100%/3);
-  background-color: darkblue;
+  background-color: black;
   box-sizing: border-box;
   border: 1px solid black;
   color: white;
@@ -72,16 +82,28 @@ body {
   
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.post-button:hover:not(:nth-child(2)) {
+  background-color: white;
+  color:black;
 }
 
 .user-id-header {
   width: 65%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .user-id-value {
   width: 35%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .post-date {
@@ -116,37 +138,49 @@ body {
   display: flex;
   flex-direction: column;
   color: white;
-  background-color: #242424;
+  background-color: black;
   
 }
 
 
 #user-main-info {
-  width: 100%;
+  width: 90%;
   height: 80%;
+  margin-left: 5%;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 1);
+  background-color: white;
+  color: black;
+  font-size: 80%;
 }
 
 #user-span {
   height: 20%;
+  box-sizing: border-box;
 }
 
 .user-info-part {
   width: 100%;
   height: 25%;
   display: flex;
-  background-color: white;
-  color: black;
+}
+
+.user-info-part:nth-child(1) {
+  padding-top: 5%;
 }
 
 .info-part-header {
   width: 30%;
   height: 100%;
   font-weight: bold;
+  margin-left: 2%;
+  box-sizing: border-box;
 }
 
 .info-part-value {
-  width: 70%;
+  max-width: 70%;
   height: 100%;
+  margin-left: 2%;
+  box-sizing: border-box;
 }
 
 
@@ -163,3 +197,78 @@ body {
   width: 100%;
 }
 
+.info_dialog {
+  margin-top: 20%;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 32%; /* Можно регулировать */
+  text-align: center;
+}
+
+#error-message-login {
+  position: fixed; /* Относительно всего экрана */
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: auto;
+  background-color: black;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1001; /* Выше, чем у backdrop */
+  pointer-events: auto;
+}
+
+#error-close {
+  background-color: white;
+  color: black;
+  width: 20%;
+  margin: auto;
+  padding: 5px;
+  cursor: pointer;
+  z-index: 1002; /* Ещё выше */
+}
+
+#error-close:hover {
+  background-color: black;
+  color: white;
+}
+
+#logo-id {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+
+.tbody {
+  
+  background-size: cover;
+  background-position: center;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media only screen and (min-width: 320px) {
+  .tbody {
+    background-image: url('../img/wallback320.png');
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .tbody {
+    background-image: url('../img/wallback768.png');
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .tbody {
+    background-image: url('../img/wallback.png');
+  }
+}

@@ -1,3 +1,4 @@
+import '../css/login.css';
 import { loginUser } from "./auth";
 import { addUser, registerUser } from "./users";
 
@@ -7,11 +8,11 @@ const loginBlock = document.querySelector('.login-form-div');
 
 const makeLoginButtons = () => {
     loginBlock.innerHTML = '';
-    const loginButton = document.createElement('div');
+    const loginButton = document.createElement('button');
     loginButton.className = 'login-buttons';
     loginButton.textContent = 'login';
 
-    const signButton = document.createElement('div');
+    const signButton = document.createElement('button');
     signButton.className = 'login-buttons';
     signButton.textContent = 'sign in';
 
@@ -95,12 +96,12 @@ const makeSignBlock = () => {
     addNewUser.addEventListener('click', async (event) => {
         event.preventDefault();
         try {
-            const response = await registerUser();
-            console.log(response);
+            const response = await registerUser(); // Теперь функция возвращает значение
+            console.log('Response received:', response);
+            makeLoginBlock();
         } catch (e) {
             console.log(e.message);
         }
-        
     });
 };
 

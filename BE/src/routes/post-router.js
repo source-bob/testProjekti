@@ -17,7 +17,7 @@ postRouter.route('/')
   .post(
     authenticateToken,
     body('user_id').trim().isNumeric(),
-    body('note').trim().isLength({max: 150}),
+    body('note').trim().isLength({min: 5, max: 150}),
     validationErrorHandler,
     addPost
   );
@@ -25,7 +25,7 @@ postRouter.route('/')
 postRouter.route('/:id')
   .get(authenticateToken, getPostsById)
   .put(authenticateToken,
-    body('note').trim().isLength({max: 150}),
+    body('note').trim().isLength({min: 5, max: 150}),
     validationErrorHandler,
     changePost)
   .delete(authenticateToken, deletePost);

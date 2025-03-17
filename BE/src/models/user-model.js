@@ -1,32 +1,12 @@
 import promisePool from '../utils/database.js';
 
 
-
 const selectAllUsers = async () => {
     try {
         const [users] = await promisePool.query(
             'SELECT user_id, username, email, registered_at, user_level FROM Users'
         );
         return users;
-    } catch (e) {
-        console.error('error', e.message);
-        return {error: e.message};
-    }
-};
-
-const changeUserById = async (id, data) => {
-    try {
-        console.log('BODY DATA:', data);
-        const { username, password, email, user_level } = data;
-        const sqlQuery = `
-        UPDATE users
-        SET username = ?, password = ?, email = ?, user_level = ?
-        WHERE user_id = ?`;
-
-        const values = [username, password, email, user_level, id];
-        const [result] = await promisePool.query(sqlQuery, values);
-
-        return { updated: result.affectedRows > 0 };
     } catch (e) {
         console.error('error', e.message);
         return {error: e.message};
@@ -62,20 +42,6 @@ const addUser = async (entry) => {
             return { error: 'user was not inserted' };
         }
         
-    } catch (e) {
-        console.error('error', e.message);
-        return {error: e.message};
-    }
-};
-
-const changePassByID = async (id, pass) => {
-    const sql = `UPDATE users
-                SET password = '${pass}'
-                WHERE user_id = ${id}`;
-    try {
-        const users = await promisePool.query(sql);
-        console.log('users', users[0]);
-        return {user_id: id, message: 'pass changed', new_pass: pass};
     } catch (e) {
         console.error('error', e.message);
         return {error: e.message};
@@ -123,7 +89,6 @@ const selectUserByNameAndPassword = async (username, password) => {
       [username, password],
     );
     console.log(rows);
-    // return only first item of the result array
     return rows[0];
   } catch (error) {
     console.error(error);
@@ -138,7 +103,6 @@ const selectUserByUsername = async (username) => {
         [username],
       );
       console.log(rows);
-      // return only first item of the result array
       return rows[0];
     } catch (error) {
       console.error(error);
@@ -158,16 +122,14 @@ const editUser = async (id, username, pass, email, user_level) => {
         console.error('error', e.message);
         return {error: e.message};
     }
-}
+};
 
 export { 
     selectAllUsers as getAllUsers,
     findUserById,
     addUser,
-    changePassByID,
     deleteUserById,
     selectUserByNameAndPassword,
     selectUserByUsername,
-    editUser,
-    changeUserById
+    editUser
 };

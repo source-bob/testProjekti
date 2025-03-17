@@ -9,7 +9,7 @@ const formatDate = (dateString) => {
         day: '2-digit', 
         hour: '2-digit', 
         minute: '2-digit' 
-    }).replace(',', ''); // Убираем запятую между датой и временем
+    }).replace(',', '');
 };
 
 const fillUserData = async () => {
@@ -46,8 +46,6 @@ const fillUserData = async () => {
 const addUser = async (event) => {
     event.preventDefault();
 
-
-    // haetaan formista oikea tieto mikä on täytetty
     let username, password, email, userLevel;
     try {
         username = document.querySelector('#username').value.trim();
@@ -58,15 +56,6 @@ const addUser = async (event) => {
         return e.message;
     }
 
-    // POST
-    // content-type: application/json
-
-    /*const bodyData = {
-        username: 'uusi käyttäjä',
-        password: 'uusipass',
-        email: 'uusiemail@example.com',
-    };*/
-
     const bodyData = {
         username: username,
         password: password,
@@ -75,10 +64,8 @@ const addUser = async (event) => {
     };
 
 
-    // url
     const url = 'http://localhost:3000/api/users';
 
-    // options eli mikä metodi, headers ja JSON
     const options = {
         body: JSON.stringify(bodyData),
         method: 'POST',
@@ -98,24 +85,24 @@ const addUser = async (event) => {
     }
 
     if (response.message) {
-        alert(response.message);
+        const messageText = 'user created';
+        const mainBlock = document.querySelector('.app');
+        const message = await createMessage(messageText);
+        mainBlock.appendChild(message);
     }
 
     console.log(response);
-    document.querySelector('.addform').reset(); // tyhjennetään formi
+    document.querySelector('.addform').reset();
     getUsers();
 };
 
-const registerUser = async (event) => {
+const registerUser = async () => { // event не нужен, так как он не используется
     let username, password, email, userLevel;
 
-    
     username = document.querySelector('#username').value.trim();
     password = document.querySelector('#password').value.trim();
     email = document.querySelector('#email').value.trim();
     userLevel = 'regular';
-    
-    
 
     const bodyData = {
         username: username,
@@ -124,11 +111,8 @@ const registerUser = async (event) => {
         user_level: userLevel,
     };
 
-
-    // url
     const url = 'http://localhost:3000/api/auth/register';
 
-    // options eli mikä metodi, headers ja JSON
     const options = {
         body: JSON.stringify(bodyData),
         method: 'POST',
@@ -147,65 +131,19 @@ const registerUser = async (event) => {
         const message = await createMessage(messageText);
 
         mainBlock.appendChild(message);
-        return
+        return response; // Возвращаем response, даже если ошибка
     }
 
     if (response.message) {
-        alert(response.message);
+        const messageText = 'user created';
+        const mainBlock = document.querySelector('.app');
+        const message = await createMessage(messageText);
+        mainBlock.appendChild(message);
     }
 
     console.log(response);
+    return response; // Добавляем return, чтобы вернуть ответ
 };
-
-/*const findUser = async (event) => {
-    event.preventDefault();
-
-    const dialog = document.querySelector('.info_dialog');
-    const dialogP = dialog.querySelector('p');
-    dialogP.innerHTML = '';
-
-    dialogP.innerHTML = `
-    <form class="addform">
-        <label for="username">Put data</label><br>
-        <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="username"
-        /><br>
-        <input
-            id="find-user-id"
-            type="text"
-            name="find-user-id"
-            placeholder="or user id"
-        /><br>
-        <input
-            id="find-user-level"
-            type="text"
-            name="find-user-level"
-            placeholder="or user level"
-        />
-        <input
-            name="submit"
-            type="submit"
-            value="Add User"
-            class="formpost"
-        />
-    </form>
-    `;
-
-    const closeButton = document.querySelector('.info_dialog button');
-    // "Close" button closes the dialog
-    closeButton.addEventListener('click', () => {
-        dialog.close();
-    });
-
-    const username = document.querySelector('#username').value.trim();
-    const id = document.querySelector('#find-user-id').value.trim();
-    const level = document.querySelector('#find-user-level').value.trim();
-    
-
-}*/
 
 const findUser = async () => {
     const token = localStorage.getItem('token');
@@ -230,7 +168,7 @@ const findUser = async () => {
     }
 
     console.log(user);
-    const tableBody = document.querySelector('.tbody');
+    const tableBody = document.querySelector('#users-window');
     tableBody.innerHTML = '';
 
     const row = createUserBlock(user);
@@ -267,22 +205,22 @@ const createUserBlock = (user) => {
     const buttonsRivi2 = document.createElement('div');
     buttonsRivi2.className = 'button-rivi';
 
-    const infoButton = document.createElement('div');
+    const infoButton = document.createElement('button');
     infoButton.className = 'user-button';
     infoButton.textContent = 'info';
     infoButton.id = 'user-info-button';
 
-    const editButton = document.createElement('div');
+    const editButton = document.createElement('button');
     editButton.className = 'user-button';
     editButton.textContent = 'edit';
     editButton.id = 'user-edit-button';
 
-    const deleteButton = document.createElement('div');
+    const deleteButton = document.createElement('button');
     deleteButton.className = 'user-button';
     deleteButton.textContent = 'delete';
     deleteButton.id = 'user-delete-button';
 
-    const postsButton = document.createElement('div');
+    const postsButton = document.createElement('button');
     postsButton.className = 'user-button';
     postsButton.textContent = 'posts';
     postsButton.id = 'user-posts-button';
@@ -331,7 +269,7 @@ const getUsers = async () => {
 
     console.log(users);
 
-    const tableBody = document.querySelector('.tbody');
+    const tableBody = document.querySelector('#users-window');
     tableBody.innerHTML = ''; // tyhjennetään taulukko
 
     users.forEach((user) => {
@@ -417,130 +355,84 @@ const deleteUser = async (id) => {
     });
 };
 
-const editUserById = async (id) => {
-    
-    const userLvl = localStorage.getItem('user_level');
-    const dialog = document.querySelector('.info_dialog');
+const editUserById = (id) => {
+    return new Promise((resolve, reject) => { // Создаём промис
+        const userLvl = localStorage.getItem('user_level');
+        const dialog = document.querySelector('.info_dialog');
 
-    const closeButton = document.querySelector('.info_dialog button');
-        // "Close" button closes the dialog
+        const closeButton = document.querySelector('.info_dialog button');
         closeButton.addEventListener('click', () => {
             dialog.close();
+            reject('Dialog closed without submitting');
+        });
+
+        dialog.querySelector('p').innerHTML = `
+        <form class="addform">
+            <label for="username">Username</label><br>
+            <input id="username" type="text" name="username" placeholder="uusi käyttäjä"/><br>
+            <label for="password">Password</label><br>
+            <input id="password" type="password" name="password" placeholder="password"/><br>
+            <label for="email">email</label><br>
+            <input id="email" type="email" name="email" placeholder="newuser@example.com"/><br>
+            <label for="user-level">User level</label><br>
+            <input id="user-level" type="text" name="user-level" placeholder="(regular or admin)"/><br>
+            <input name="submit" type="submit" value="save" class="formpost"/>
+        </form>
+        `;
+
+        let userLevel;
+        if (userLvl === 'regular') {
+            const hideBlock = dialog.querySelector('#user-level');
+            hideBlock.style.display = 'none';
+            const label = document.querySelector('label[for="user-level"]');
+            label.style.display = 'none';
+            userLevel = 'regular';
+        }
+
+        dialog.showModal();
+
+        const editUserForm = document.querySelector('.addform');
+        editUserForm.addEventListener('submit', async (event) => { // Теперь обрабатываем submit
+            event.preventDefault();
+
+            const username = document.querySelector('#username').value.trim();
+            const password = document.querySelector('#password').value.trim();
+            const email = document.querySelector('#email').value.trim();
+            if (userLvl === 'admin') {
+                userLevel = document.querySelector('#user-level').value.trim();
+            }
+
+            const bodyData = { username, password, email, user_level: userLevel };
+            const url = `http://localhost:3000/api/users/${id}`;
+
+            const options = {
+                body: JSON.stringify(bodyData),
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            };
+
+            try {
+                const response = await fetchData(url, options);
+                console.log('RESPONSE', response);
+                
+                if (response.error) {
+                    console.log(response.error);
+                    reject(response.error);
+                } else {
+                    if (userLvl === 'admin') {
+                        getUsers();
+                    }
+                    resolve(response);
+                }
+            } catch (error) {
+                console.error('Error in editUserById:', error);
+                reject(error);
+            }
+        });
     });
-    
-    dialog.querySelector('p').innerHTML = `
-    <form class="addform">
-        <label for="username">Username</label><br>
-        <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="uusi käyttäjä"
-        /><br>
-        <label for="password">Password</label><br>
-        <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="password"
-        /><br>
-        <label for="email">email</label><br>
-        <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="newuser@example.com"
-        /><br>
-        <label for="user-level">User level</label><br>
-        <input
-            id="user-level"
-            type="text"
-            name="user-level"
-            placeholder="(regular or admin)"
-        /><br>
-        <input
-            name="submit"
-            type="submit"
-            value="save"
-            class="formpost"
-        />
-    </form>
-    `;
-    let userLevel;
-    if (userLvl === 'regular') {
-        const hideBlock = dialog.querySelector('#user-level');
-        hideBlock.style.display = 'none';
-        const label = document.querySelector('label[for="user-level"]');
-        label.style.display = 'none';
-        userLevel = 'regular';
-    }
-
-    dialog.showModal();
-
-    const editUserForm = document.querySelector('.formpost');
-    editUserForm.addEventListener('click', async (event) => {
-        event.preventDefault();
-
-        const username = document.querySelector('#username').value.trim();
-        const password = document.querySelector('#password').value.trim();
-        const email = document.querySelector('#email').value.trim();
-        if (userLvl === 'admin') {
-            userLevel = document.querySelector('#user-level').value.trim();
-        }
-        
-        // POST
-        // content-type: application/json
-
-        /*const bodyData = {
-            username: 'uusi käyttäjä',
-            password: 'uusipass',
-            email: 'uusiemail@example.com',
-        };*/
-
-        const bodyData = {
-            username: username,
-            password: password,
-            email: email,
-            user_level: userLevel,
-        };
-
-
-        // url
-        const url = `http://localhost:3000/api/users/${id}`;
-
-        // options eli mikä metodi, headers ja JSON
-        const options = {
-            body: JSON.stringify(bodyData),
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            },
-        };
-
-        const response = await fetchData(url, options);
-
-        if (response.error) {
-            console.log(response.error);
-            return
-        }
-
-        if (response.message) {
-            console.log(response.message);
-        }
-
-        if (userLvl === 'admin') {
-            getUsers();
-        }
-
-
-        
-    });
-
-        
-
-
-    
 };
 
 

@@ -16,34 +16,71 @@
     background-color: black;
 }
 
+#regular-control-buttons {
+    width: 90%;
+    height: 80.5%;
+    box-sizing: border-box;;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 1);
+    margin-left: 5%;
+}
+
 .regular-panel-button {
     width: 100%;
-    height: 16%;
-    background-color: darkblue;
+    height: 20%;
     border: 1px solid black;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80%;
+}
+
+.regular-panel-button:hover {
+    background-color: black;
+    color: white;
 }
 
 .regular-panel-button:nth-child(1) {
-    margin-top: 13%;
+    margin-top: 0%;
 }
 
-.regular-panel-posts {
-    height: 80%;
+#notes-window {
+    position: relative;
+    height: 78%;
     width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 2.5%;
+    box-shadow: inset 0 20px 15px rgba(0, 0, 0, 1);
+    z-index: 1000;
     background-color: black;
-    overflow: hidden;
 }
 
-.tbody2 {
-    width: 90%;
-    height: 90%;
-    background-color: white;
+.tbody::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Высота тени */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
+    pointer-events: none; /* Чтобы тень не блокировала взаимодействие с постами */
+    z-index: 10; /* Выше постов */
+}
+
+.admin-panel-line {
+    background-color: black;
+}
+
+.tbody {
+    width: 100%;
+    height: 100%;
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 1);
-    margin: 4.5% 5%;
+    margin: auto;
+    border: 3px solid black;
     box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 .post-div {
@@ -53,4 +90,13 @@
     height: 12vh;
     margin-bottom: 2.5%;
     display: flex;
+    background-color: white;
 }
+
+#logo-id {
+    height: 100%;
+    border-top: 4px solid black;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 1);
+}
+
