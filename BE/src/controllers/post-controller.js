@@ -16,7 +16,6 @@ const checkLevel = async (user) => {
   }
 };
 
-
 const getPosts = async (req, res, next) => {
   try {
     const posts = await listAllPosts();

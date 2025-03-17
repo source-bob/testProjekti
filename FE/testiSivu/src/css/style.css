@@ -1,12 +1,10 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Lexend', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: indigo;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -16,7 +14,7 @@
 
 @font-face {
   font-family: 'Lexend';
-  src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('ttf');
+  src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -204,12 +202,12 @@ body {
   background: white;
   color: black;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  width: 32%; /* Можно регулировать */
+  width: 32%;
   text-align: center;
 }
 
 #error-message-login {
-  position: fixed; /* Относительно всего экрана */
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%);
@@ -220,7 +218,7 @@ body {
   padding: 15px;
   text-align: center;
   border-radius: 5px;
-  z-index: 1001; /* Выше, чем у backdrop */
+  z-index: 1001;
   pointer-events: auto;
 }
 
@@ -231,7 +229,7 @@ body {
   margin: auto;
   padding: 5px;
   cursor: pointer;
-  z-index: 1002; /* Ещё выше */
+  z-index: 1002;
 }
 
 #error-close:hover {

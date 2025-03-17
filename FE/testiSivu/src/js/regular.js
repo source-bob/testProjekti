@@ -12,7 +12,6 @@ tbody.addEventListener('scroll', () => {
     tbody.style.backgroundPosition = `center ${-scrollTop}px`;
 });
 
-
 getPosts();
 await fillUserData();
 const userId = localStorage.getItem('user_id');
@@ -21,9 +20,9 @@ const editOwnInfo = document.querySelector('#edit-own-info');
 editOwnInfo.addEventListener('click', async () => {
     try {
         console.log('button clicked');
-        const response = await editInfo(userId); // Дожидаемся завершения редактирования
+        const response = await editInfo(userId); 
         console.log('editInfo response:', response);
-        if (response) { // Теперь response не undefined!
+        if (response) {
             console.log('Logging out...');
             await logout();
         }
@@ -31,9 +30,6 @@ editOwnInfo.addEventListener('click', async () => {
         console.error('Error during editInfo:', error);
     }
 });
-
-
-
 
 const createNewPost = document.querySelector('#create-post');
 createNewPost.addEventListener('click', async () => {
@@ -63,6 +59,6 @@ const editInfo = async (id) => {
         return response;
     } catch (e) {
         console.error('Error in editInfo:', e);
-        return null; // Возвращаем значение в случае ошибки
+        return null;
     }
 };

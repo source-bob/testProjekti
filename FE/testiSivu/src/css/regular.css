@@ -64,10 +64,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px; /* Высота тени */
+    height: 70px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
-    pointer-events: none; /* Чтобы тень не блокировала взаимодействие с постами */
-    z-index: 10; /* Выше постов */
+    pointer-events: none;
+    z-index: 10;
 }
 
 .admin-panel-line {

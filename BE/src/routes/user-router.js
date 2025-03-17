@@ -12,8 +12,6 @@ import { validationErrorHandler } from '../middlewares/error-handler.js';
 
 const userRouter = express.Router();
 
-
-
 userRouter.route('/')
     .get(authenticateToken, getUsers)
     .post(authenticateToken,

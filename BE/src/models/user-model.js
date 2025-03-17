@@ -50,7 +50,7 @@ const addUser = async (entry) => {
 
 const resetAutoIncrement = async () => {
     const [rows] = await promisePool.query("SELECT MAX(user_id) AS max_id FROM users");
-    const maxId = rows[0].max_id || 0; // Если таблица пуста, ставим 1
+    const maxId = rows[0].max_id || 0;
 
     await promisePool.query("ALTER TABLE users AUTO_INCREMENT = ?", [maxId + 1]);
 };

@@ -96,7 +96,7 @@ const makeSignBlock = () => {
     addNewUser.addEventListener('click', async (event) => {
         event.preventDefault();
         try {
-            const response = await registerUser(); // Теперь функция возвращает значение
+            const response = await registerUser(); 
             console.log('Response received:', response);
             makeLoginBlock();
         } catch (e) {

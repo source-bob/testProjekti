@@ -3,8 +3,8 @@
 }
 
 .info_dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5); /* Полупрозрачный тёмный фон */
-    backdrop-filter: blur(3px); /* Эффект размытия (по желанию) */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
 }
 
 .info_dialog {
@@ -14,7 +14,7 @@
     background: white;
     color: black;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 32%; /* Можно регулировать */
+    width: 32%;
     text-align: center;
 }
 
@@ -75,10 +75,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 30px; /* Высота тени */
+    height: 30px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 1), transparent);
-    pointer-events: none; /* Чтобы тень не блокировала взаимодействие с постами */
-    z-index: 10; /* Выше постов */
+    pointer-events: none; 
+    z-index: 10; 
 }
 
 .tbody {

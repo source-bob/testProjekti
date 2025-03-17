@@ -9,7 +9,7 @@ const formatDate = (dateString) => {
         day: '2-digit', 
         hour: '2-digit', 
         minute: '2-digit' 
-    }).replace(',', ''); // Убираем запятую между датой и временем
+    }).replace(',', '');
 };
 
 const createPostBlock = (post) => {
@@ -18,7 +18,6 @@ const createPostBlock = (post) => {
 
     const postDiv = document.createElement('div');
     postDiv.className = 'post-div';
-    
     
     const postTextBlock = document.createElement('div');
     postTextBlock.className = 'post-text';
@@ -171,7 +170,6 @@ const getPostsById = async (id) => {
     console.log('RESPONSE:', response);
     let tableBody;
     
-
     tableBody = document.querySelector('.tbody');
     
     tableBody.innerHTML = '';
@@ -207,7 +205,6 @@ const editPost = async (id, postText) => {
             dialog.close();
         });
 
-
     dialog.showModal();
 
     const editPostForm = document.querySelector('.formpost');
@@ -215,8 +212,6 @@ const editPost = async (id, postText) => {
         event.preventDefault();
 
         const note = document.querySelector('#post-edit-form-text').value.trim();
-        
-
         // POST
         // content-type: application/json
 
@@ -229,8 +224,6 @@ const editPost = async (id, postText) => {
         const bodyData = {
             note: note
         };
-
-
         // url
         const url = `http://localhost:3000/api/posts/${id}`;
 
@@ -254,7 +247,7 @@ const editPost = async (id, postText) => {
             const message = await createMessage(messageText);
     
             mainBlock.appendChild(message);
-            return response; // Возвращаем response, даже если ошибка
+            return response; 
         }
 
         if (response.message) {
@@ -263,9 +256,6 @@ const editPost = async (id, postText) => {
 
         getPosts();
         dialog.close();
-
-
-        
     });
 };
 
@@ -283,25 +273,16 @@ const deletePost = async (id) => {
     const closeButton = dialog.querySelector('button');
     closeButton.addEventListener('click', () => {
         dialog.close();
-        getPosts(); // Обновляем список постов
+        getPosts(); 
     });
     try {
         const response = await fetchData(url, options);
         console.log(response);
 
-        
-
-        // Вставляем контент перед открытием диалога
         dialog.querySelector('p').innerHTML = `
             <div>Post ID: ${id} deleted</div>
         `;
-
-        // Открываем модальное окно
         dialog.showModal();
-
-        // Назначаем обработчик для кнопки закрытия
-        
-
     } catch (error) {
         console.error('Ошибка при удалении поста:', error);
     }
@@ -328,12 +309,10 @@ const addPost = async () => {
     `;
 
     const closeButton = document.querySelector('.info_dialog button');
-        // "Close" button closes the dialog
+        
         closeButton.addEventListener('click', () => {
-            
             dialog.close();
         });
-
 
     dialog.showModal();
 
@@ -342,15 +321,10 @@ const addPost = async () => {
         event.preventDefault();
 
         const note = document.querySelector('#post-edit-form-text').value.trim();
-        
-
-        
-
         const bodyData = {
             user_id: localStorage.getItem('user_id'),
             note: note
         };
-
 
         // url
         const url = `http://localhost:3000/api/posts/`;
@@ -384,9 +358,6 @@ const addPost = async () => {
 
         getPosts();
         dialog.close();
-
-
-        
     });
 };
 
@@ -398,7 +369,6 @@ const addPostEventListeners = () => {
         const postId = div.querySelector('.post-number-value').textContent.trim();
         const postText = div.querySelector('.post-text').textContent.trim();
 
-
         const postEditButton = div.querySelector('#edit-post-button');
         if (postEditButton) {
             postEditButton.addEventListener('click', () => editPost(postId, postText));
@@ -408,8 +378,6 @@ const addPostEventListeners = () => {
         if (postDeleteButton) {
             postDeleteButton.addEventListener('click', () => deletePost(postId));
         };
-        
-        
     });
 };
 

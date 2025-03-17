@@ -63,7 +63,6 @@ const addUser = async (event) => {
         user_level: userLevel,
     };
 
-
     const url = 'http://localhost:3000/api/users';
 
     const options = {
@@ -74,7 +73,6 @@ const addUser = async (event) => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
     };
-
 
     const response = await fetchData(url, options);
 
@@ -96,7 +94,7 @@ const addUser = async (event) => {
     getUsers();
 };
 
-const registerUser = async () => { // event не нужен, так как он не используется
+const registerUser = async () => { 
     let username, password, email, userLevel;
 
     username = document.querySelector('#username').value.trim();
@@ -131,7 +129,7 @@ const registerUser = async () => { // event не нужен, так как он 
         const message = await createMessage(messageText);
 
         mainBlock.appendChild(message);
-        return response; // Возвращаем response, даже если ошибка
+        return response; 
     }
 
     if (response.message) {
@@ -142,7 +140,7 @@ const registerUser = async () => { // event не нужен, так как он 
     }
 
     console.log(response);
-    return response; // Добавляем return, чтобы вернуть ответ
+    return response;
 };
 
 const findUser = async () => {
@@ -231,8 +229,6 @@ const createUserBlock = (user) => {
     buttonsRivi2.appendChild(postsButton);
     buttonsRivi2.appendChild(deleteButton);
     
-
-
     const userButtons = document.createElement('div');
     userButtons.className = 'user-buttons-div';
 
@@ -252,7 +248,6 @@ const getUsers = async () => {
 
     const url = 'http://localhost:3000/api/users';
     
-
     const options = {
         method: 'GET',
         headers: {
@@ -276,8 +271,6 @@ const getUsers = async () => {
         const userBlock = createUserBlock(user);
     
         tableBody.appendChild(userBlock);
-        
-        
     });
 
     // TODO
@@ -295,7 +288,7 @@ const showUserInfo = async (id) => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
     };
-;
+
     const url = `http://localhost:3000/api/users/${id}`;
 
     const response = await fetchData(url, options);
@@ -317,8 +310,6 @@ const showUserInfo = async (id) => {
     <div>user level: ${response.user_level}</div>
     <div>registered: ${formatDate(response.registered_at)}</div>
     `
-
-
     const closeButton = document.querySelector('.info_dialog button');
     // "Close" button closes the dialog
     closeButton.addEventListener('click', () => {
@@ -336,7 +327,6 @@ const deleteUser = async (id) => {
         },
     };
 
-    
     const response = await fetchData(url, options);
     
     console.log(response);
@@ -356,7 +346,7 @@ const deleteUser = async (id) => {
 };
 
 const editUserById = (id) => {
-    return new Promise((resolve, reject) => { // Создаём промис
+    return new Promise((resolve, reject) => {
         const userLvl = localStorage.getItem('user_level');
         const dialog = document.querySelector('.info_dialog');
 
@@ -392,7 +382,7 @@ const editUserById = (id) => {
         dialog.showModal();
 
         const editUserForm = document.querySelector('.addform');
-        editUserForm.addEventListener('submit', async (event) => { // Теперь обрабатываем submit
+        editUserForm.addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const username = document.querySelector('#username').value.trim();

@@ -6,8 +6,8 @@
 ![admin window](screenshots/admin.png)
 
 ## Application Access  
-🔹 **Frontend:** [my-app-frontend](https://github.com/source-bob/testProjekti/tree/last/FE/testiSivu)  
-🔹 **Backend:** [my-app-backend](https://github.com/source-bob/testProjekti/tree/last/BE)
+🔹 **Frontend:** [my-app-frontend](https://github.com/source-bob/testProjekti/tree/final2/FE/testiSivu)  
+🔹 **Backend:** [my-app-backend](https://github.com/source-bob/testProjekti/tree/final2/BE)
 
 ## Running the Project Locally 
 ### **1. Clone the repository:**  
